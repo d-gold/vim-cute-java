@@ -12,6 +12,13 @@ syntax clear javaOperator
 syntax clear javaBoolean 
 syntax clear javaConstant
 syntax clear javaType
+syntax clear javaParen
+syntax clear javaParenT1
+syntax clear javaParenT
+syntax clear javaParen1
+syntax clear javaParenT2
+syntax clear javaParen2
+syntax clear javaBraces
 
 syn keyword javaType            boolean char byte short int long float double
 "syn keyword javaType            void
@@ -42,7 +49,10 @@ syntax match javaFalse "\<false\>" contains=javaFalse1,javaFalse2,javaFalse3
 syntax match javaNiceOperator "\s<=\s" conceal cchar=≤
 syntax match javaNiceOperator "\s>=\s" conceal cchar=≥
 syntax match javaNiceOperator "=\@<!===\@!" conceal cchar=≡
-syntax match javaNiceOperator "!=" conceal cchar=≢
+
+syntax match javaNeq1 contained "\s!" conceal cchar= 
+syntax match javaNeq2 contained "=\s" conceal cchar=≢
+syntax match javaNeqFull "\s!=\s" contains=javaNeq1,javaNeq2
 
 " Boolean operations
 syntax match javaOr1 contained "\s|" conceal cchar=∨
@@ -53,11 +63,18 @@ syntax match javaAnd1 contained "\s&" conceal cchar=∧
 syntax match javaAnd2 contained "&\s" conceal cchar= 
 syntax match javaAndFull "\s&&\s" contains=javaAnd1,javaAnd2
 
-syntax match javaNiceOperator "\s&&\s*!" conceal cchar=⊼
-syntax match javaNiceOperator "\s||\s*!" conceal cchar=⊽
+syntax match javaNand1 contained "\s&" conceal cchar=⊼
+syntax match javaNand2 contained "&\s*!" conceal cchar= 
+syntax match javaNandFull "\s&&\s*!" contains=javaNand1,javaNand2
+
+syntax match javaNor1 contained "\s|" conceal cchar=⊽
+syntax match javaNor2 contained "|\s*!" conceal cchar= 
+syntax match javaNorFull "\s||\s*!" contains=javaNor1,javaNor2
+
 syntax match javaNiceOperator "\s^\s" conceal cchar=⊻
+
 syntax match javaNiceOperator "\<not\>" conceal cchar=¬
-syntax match javaNiceOperator "!" conceal cchar=¬ 
+syntax match javaNiceOperator "!\@<!!=\@!" conceal cchar=¬ 
 
 " Types
 syntax match javaNiceType "\<Boolean\>" conceal cchar=𝔹
