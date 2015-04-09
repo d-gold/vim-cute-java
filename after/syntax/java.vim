@@ -25,6 +25,17 @@ syn keyword javaType            boolean char byte short int long float double
 "syn keyword javaType		  Integer Double Date Boolean Float String Array Vector List
 syn keyword javaType		  Double Boolean Float Vector 
 
+
+syntax match javaFunction1 contained "\<F" conceal cchar=λ
+syntax match javaFunction2 contained "u" conceal cchar=𝒇
+syntax match javaFunction3 contained "nction\>" conceal cchar= 
+syntax match javaFunction "\<Function\>" contains=javaFunction1,javaFunction2,javaFunction3
+
+syntax match javaPredicate1 contained "\<P" conceal cchar=λ
+syntax match javaPredicate2 contained "r" conceal cchar=𝔹
+syntax match javaPredicate3 contained "edicate\>" conceal cchar= 
+syntax match javaPredicate "\<Predicate\>" contains=javaPredicate1,javaPredicate2,javaPredicate3
+
 " Constants
 syntax match javaNull1 contained "\<n" conceal cchar= 
 syntax match javaNull2 contained "u" conceal cchar=⊥
